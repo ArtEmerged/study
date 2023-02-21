@@ -11,22 +11,19 @@ func main() {
 	fmt.Println(BinaryIterat(hundred, 3))
 }
 
-func BinaryIterat(hundred []int, m int) int {
+func BinaryIterat(arr []int, find int) int {
 	min := 0
-	max := len(hundred) - 1
+	max := len(arr) - 1
 	for min <= max {
-		midddle := (min + max) / 2
-
-		if hundred[midddle] == m {
-			return midddle
+		middle := (min + max) / 2
+		if arr[middle] == find && max-min == 0 {
+			return middle
 		}
-		if hundred[midddle] < m {
-			min = midddle + 1
+		if find > arr[middle] {
+			min = middle + 1
 		} else {
-			max = midddle - 1
+			max = middle
 		}
-
 	}
 	return 0
-
 }
