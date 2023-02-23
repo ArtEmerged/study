@@ -1,16 +1,17 @@
 package piscine
 
 type TreeNode struct {
-	Left, Right *TreeNode
-	Val         int
+	Left, Right, Parent *TreeNode
+
+	Data string
 }
 
-func BTreeInsertData(root *TreeNode, data int) *TreeNode {
+func BTreeInsertData(root *TreeNode, data string) *TreeNode {
 
 	if root == nil {
-		return &TreeNode{Val: data}
+		return &TreeNode{Data: data}
 	}
-	if data < root.Val {
+	if data < root.Data {
 		root.Left = BTreeInsertData(root.Left, data)
 	} else {
 		root.Right = BTreeInsertData(root.Right, data)
