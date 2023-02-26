@@ -50,7 +50,7 @@ func main() {
 		fmt.Println(Search(StickersNumber, number))
 	}
 }
-
+//
 func sortInt(arr []int) []int {
 	if len(arr) > 1 {
 		Left := 0
