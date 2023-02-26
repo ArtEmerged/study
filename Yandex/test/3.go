@@ -12,6 +12,7 @@ func main() {
 	var quantitySticks, quantityCollector int
 	var N, K string
 	file, _ := os.Open("input.txt")
+	defer file.Close()
 	read := bufio.NewScanner(file)
 	for read.Scan() {
 		if quantitySticks == 0 {
@@ -28,10 +29,14 @@ func main() {
 	arrK := strings.Split(K, " ")
 	StickersNumber := make([]int, 0, quantitySticks)
 	StickersCollector := make([]int, 0, quantityCollector)
+	key := map[string]int{}
 	for _, s := range arrN {
-		num, err := strconv.Atoi(s)
-		if err == nil {
-			StickersNumber = append(StickersNumber, num)
+		key[s]++
+		if key[s] == 1 {
+			num, err := strconv.Atoi(s)
+			if err == nil {
+				StickersNumber = append(StickersNumber, num)
+			}
 		}
 	}
 	for _, s := range arrK {
@@ -40,8 +45,6 @@ func main() {
 			StickersCollector = append(StickersCollector, num)
 		}
 	}
-	// StickersNumber := []int{5}       // 1, 50, 70, 75, 80, 85, 90, 95, 100
-	// StickersCollector := []int{4, 6} //  0  1   2   3  (4)  5   6   7   8
 	sortInt(StickersNumber)
 	for _, number := range StickersCollector {
 		fmt.Println(Search(StickersNumber, number))
@@ -70,7 +73,6 @@ func sortInt(arr []int) []int {
 		sortInt(arr[Left:])
 	}
 	return arr
-
 }
 
 func Search(arr []int, find int) int {
