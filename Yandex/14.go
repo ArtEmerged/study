@@ -31,19 +31,14 @@ func main() {
 	for _, v := range N {
 		i := &LIFO{Num: v, Next: l.Head}
 		l.Head = i
-		if l.Head.Num == min {
+		for l.Head != nil && l.Head.Num == min {
 			l.Head = l.Head.Next
 			min++
 		}
 	}
-	for l.Head != nil {
-		if l.Head.Num == min {
-			l.Head = l.Head.Next
-			min++
-		} else {
-			fmt.Println("NO")
-			return
-		}
+	if l.Head != nil {
+		fmt.Println("NO")
+		return
 	}
 	fmt.Println("YES")
 }
