@@ -30,15 +30,31 @@ func main() {
 			arr = append(arr, num)
 			fmt.Println("ok")
 		case "pop_front":
-			fmt.Println(arr[0])
-			arr = arr[1:]
+			if len(arr) != 0 {
+				fmt.Println(arr[0])
+				arr = arr[1:]
+			} else {
+				fmt.Println("error")
+			}
 		case "pop_back":
-			fmt.Println(arr[last])
-			arr = arr[:last]
+			if len(arr) != 0 {
+				fmt.Println(arr[last])
+				arr = arr[:last]
+			} else {
+				fmt.Println("error")
+			}
 		case "front":
-			fmt.Println(arr[0])
+			if len(arr) != 0 {
+				fmt.Println(arr[0])
+			} else {
+				fmt.Println("error")
+			}
 		case "back":
-			fmt.Println(arr[last])
+			if len(arr) != 0 {
+				fmt.Println(arr[last])
+			} else {
+				fmt.Println("error")
+			}
 		case "size":
 			fmt.Println(len(arr))
 		case "clear":
