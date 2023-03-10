@@ -15,6 +15,8 @@ func main() {
 	}
 	in := bufio.NewReader(f)
 	arr := make([]int, 0, 100)
+	defer f.Close()
+
 	for {
 		step := ""
 		num := 0
