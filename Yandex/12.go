@@ -14,7 +14,7 @@ type List struct {
 }
 
 func main() {
-	l := &List{}
+	l := &Stek{}
 	var str string
 	fmt.Scanln(&str)
 	for _, v := range str {
