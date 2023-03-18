@@ -5,7 +5,7 @@ type TreeNode struct {
 
 	Data string
 }
-
+//check
 func BTreeInsertData(root *TreeNode, data string) *TreeNode {
 
 	if root == nil {
