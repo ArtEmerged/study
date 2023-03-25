@@ -1,5 +1,5 @@
 package leet
-
+//sum
 func twoSum(nums []int, target int) []int {
     an:=make([]int,2)
 for k, i:= range nums{
