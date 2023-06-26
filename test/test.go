@@ -99,6 +99,16 @@ func main() {
 	fmt.Println("\nIterativeFactorial")
 	arg := 4
 	fmt.Println(IterativeFactorial(arg))
+
+	fmt.Println("\nRecursiveFactorial")
+	fmt.Println(RecursiveFactorial(arg))
+
+	fmt.Println("\n IterativePower")
+	fmt.Println(IterativePower(4, 3))
+
+	fmt.Println("\n RecursivePower")
+	fmt.Println(RecursivePower(4, 3))
+
 }
 
 //QUEST 02
@@ -278,4 +288,36 @@ func IterativeFactorial(nb int) int {
 		res *= i
 	}
 	return res
+}
+
+func RecursiveFactorial(nb int) int {
+
+	if nb == 1 || nb == 0 {
+		return 1
+	} else if nb < 0 || nb > 20 {
+		return 0
+	}
+	return nb * RecursiveFactorial(nb-1)
+}
+
+func IterativePower(nb int, power int) int {
+	if power == 0 {
+		return 1
+	} else if power < 0 {
+		return 0
+	}
+	res := nb
+	for i := 1; i < power; i++ {
+		res *= nb
+	}
+	return res
+}
+
+func RecursivePower(nb int, power int) int {
+	if power == 0 {
+		return 1
+	} else if power < 0 {
+		return 0
+	}
+	return nb * RecursivePower(nb, power-1)
 }
