@@ -109,16 +109,19 @@ func main() {
 	fmt.Println("\n RecursivePower")
 	fmt.Println(RecursivePower(4, 3))
 
+	fmt.Println("\n Fibonacci")
+	arg1 := 4
+	fmt.Println(Fibonacci(arg1))
 }
 
-//QUEST 02
-
+// QUEST 02
 func printalphabet() {
 	for a := 'a'; a <= 'z'; a++ {
 		z01.PrintRune(a)
 	}
 	z01.PrintRune('\n')
 }
+
 func printreversealphabet() {
 	for a := 'z'; a >= 'a'; a-- {
 		z01.PrintRune(a)
@@ -175,7 +178,6 @@ func PrintComb2() {
 			}
 		}
 	}
-
 }
 
 func PrintNbr(n int) {
@@ -200,8 +202,7 @@ func PrintNbr(n int) {
 	}
 }
 
-//QUEST 03
-
+// QUEST 03
 func PointOne(n *int) {
 	*n = 1
 }
@@ -291,7 +292,6 @@ func IterativeFactorial(nb int) int {
 }
 
 func RecursiveFactorial(nb int) int {
-
 	if nb == 1 || nb == 0 {
 		return 1
 	} else if nb < 0 || nb > 20 {
@@ -320,4 +320,19 @@ func RecursivePower(nb int, power int) int {
 		return 0
 	}
 	return nb * RecursivePower(nb, power-1)
+}
+
+func Fibonacci(index int) int {
+	var result int
+	res1 := 0
+	res2 := 1
+	if index < 0 {
+		return -1
+	}
+	for i := 0; i < index; i++ {
+		result = res2 + res1
+		res1 = res2
+		res2 = result
+	}
+	return result
 }
