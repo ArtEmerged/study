@@ -8,7 +8,7 @@ var Friends = map[string][]string{
 	"you":    {"alice", "claire", "bob"},
 	"bob":    {"anuj", "peggy"},
 	"alice":  {"peggy"},
-	"claire": {"thom", "jonny"},
+	"claire": {"thom", "jonnH"},
 	"anuj":   {},
 	"peggy":  {},
 	"thom":   {},
@@ -21,15 +21,39 @@ func main() {
 
 var Check []string
 
+type queue []string
+
+func (q *queue) Push(i any) {
+	switch i := i.(type) {
+	case string:
+		*q = append(*q, i)
+	case []string:
+		*q = append(*q, i...)
+	}
+}
+func (q queue) Len() int {
+	return len(q)
+}
+func (q *queue) Pop() string {
+	old := *q
+	if len(old) > 0 {
+		x := old[0]
+		(*q) = (*q)[1:]
+		return x
+	}
+	return ""
+}
+
 // queue implementation in golang
 func Queue(start string) {
-	queue := []string{}
-	queue = append(queue, Friends[start]...)
-	for len(queue) != 0 {
+	// queue := []string{}
+	// queue = append(queue, Friends[start]...)
+	q := &queue{start}
+	for q.Len() != 0 {
 		//Вытаскиваем первого человека из очереди
-		person := queue[0]
+		person := q.Pop()
 		//Двигаем очередь
-		queue = queue[1:]
+		// queue = queue[1:]
 		//Проверка был ли этот человек уже в очереди
 		//В данном задаче мы добавляем наших друзей в очередь,
 		//но у нас могут быть общие друзья и чтобы не добавлять их повторно в очередь мы делаем проверку,
@@ -45,7 +69,7 @@ func Queue(start string) {
 				//Добавляем человека в список кто уже стоял в очереди
 				Check = append(Check, person)
 				//Добавляем в очередь всех друзей person
-				queue = append(queue, Friends[person]...)
+				q.Push(Friends[person])
 				//Добавляем к длине кол-во друзей
 			}
 		}
