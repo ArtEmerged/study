@@ -7,18 +7,25 @@ import (
 )
 
 func main() {
-	tpl, err := template.ParseFiles("one.gohtml")
+	tpl, err := template.ParseGlob("templates/*")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalln(err)
 	}
-	// tpl.Execute(os.Stdout,  nil)
-	two, _ := tpl.ParseFiles("two.gohtml")
-	two.ExecuteTemplate(os.Stdout, "two.gohtml", nil)
-	two.ExecuteTemplate(os.Stdout, "one.gohtml", nil)
-	tpl2, err := template.ParseGlob("template/")
-	if err != nil {
-		log.Fatal(err)
-	}
-	tpl2.Execute(os.Stdout, nil)
 
+	tpl.Execute(os.Stdout, nil)
+
+	err = tpl.ExecuteTemplate(os.Stdout, "vespa.gohtml", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = tpl.ExecuteTemplate(os.Stdout, "vespa.gohtml", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	err = tpl.ExecuteTemplate(os.Stdout, "one.gohtml", nil)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
