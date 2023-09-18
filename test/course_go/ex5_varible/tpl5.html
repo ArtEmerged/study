@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World!</title>
+    </head>
+    <body>
+        <ul>
+            {{range $index, $element := .}}
+            <li>index:{{$index}} Name:{{$element.Name}} Motto:{{$element.Motto}}</p>
+            {{end}}
+        </ul>
+        <ul>
+            {{range  .}}
+            <li>Name:{{.Name}} |Motto:{{.Motto}}</p>
+            {{end}}
+        </ul>
+    </body>
+</html>
