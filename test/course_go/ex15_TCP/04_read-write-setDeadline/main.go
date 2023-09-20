@@ -5,14 +5,15 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"time"
 )
 
 func main() {
 	li, err := net.Listen("tcp", ":8080")
-	if err != nil {
-		log.Fatal(err)
-	}
 	defer li.Close()
+	if err != nil {
+		log.Fatalln(err)
+	}
 	for {
 		conn, err := li.Accept()
 		if err != nil {
@@ -23,6 +24,10 @@ func main() {
 }
 
 func handle(conn net.Conn) {
+	err := conn.SetDeadline(time.Now().Add(10 * time.Second))
+	if err != nil {
+		log.Fatalln("CONN TIMEOUT")
+	}
 	scan := bufio.NewScanner(conn)
 	for scan.Scan() {
 		li := scan.Text()
