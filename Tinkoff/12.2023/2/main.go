@@ -7,23 +7,21 @@ func main() {
 	fmt.Scan(&countData)
 	res := make([]string, countData)
 	for i := 0; i < countData; i++ {
-		var developers, n int
-		fmt.Scan(&developers)
-		for i2 := 0; i2 < developers; i2++ {
+		var n, sum int
+		fmt.Scan(&n)
+		for i2 := 0; i2 < n; i2++ {
 			var soc int
 			fmt.Scan(&soc)
-			if soc == 1 {
-				n++
-			}
+			sum += soc
+
 		}
-		if n > 2 {
-			res[i] = "No"
-		} else {
+		if sum/2 >= n-1 {
 			res[i] = "Yes"
+		} else {
+			res[i] = "No"
 		}
 	}
 	for _, v := range res {
 		fmt.Println(v)
 	}
-
 }
